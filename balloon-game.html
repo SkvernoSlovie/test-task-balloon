@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div
+      id="balloon"
+      style="display: flex; justify-content: center; padding: 20px; font-size: 14px"
+    >
+      🎈
+    </div>
+    <script>
+      document.addEventListener('keydown', function (event) {
+        console.log(event.code);
+        if (event.code === 'ArrowUp') {
+          let size = parseInt(document.getElementById('balloon').style.fontSize) * 1.1;
+          if (size > 28) {
+            let div = document.createElement('div');
+            div.style =
+              'display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 20px; font-size: 14px';
+            div.innerHTML =
+              '<div>💥</div><div>Игра окончена. Чтобы продолжить, перезагрузите страницу</div>';
+            document.body.replaceWith(div);
+          } else {
+            document.getElementById('balloon').style.fontSize = `${size}px`;
+          }
+        }
+      });
+      document.addEventListener('keydown', function (event) {
+        if (event.code === 'ArrowDown') {
+          let size = parseInt(document.getElementById('balloon').style.fontSize) * 0.9;
+          document.getElementById('balloon').style.fontSize = `${size < 14 ? 14 : size}px`;
+        }
+      });
+    </script>
+  </body>
+</html>
